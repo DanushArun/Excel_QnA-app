@@ -87,6 +87,13 @@ This will open the Streamlit app in your default web browser.
 3. **Generated Answer:**
    - "Bottleneck issues mentioned include supply chain delays and equipment downtime."
 
+🧪 Positive Test Cases:
+1. **Upload File:**
+   - Example: `Sales_Report.xlsx`
+   **Ask a Question:**
+   - "What was the total revenue for Q4?"
+   **Generated Answer:**
+   - "The total revenue for Q4 was $1,200,000."
 ---
 
 ## 🛠 Troubleshooting
