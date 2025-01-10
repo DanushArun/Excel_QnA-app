@@ -3,6 +3,8 @@
 ## 📋 Project Overview
 This project is a **Streamlit-based application** that allows users to upload an Excel (`.xlsx`) file and ask questions about the data using **Google's Generative AI API (Gemini)**. The app extracts text from the uploaded file and uses the **Google Generative AI** to generate meaningful responses based on the user's questions.
 
+Live Link: http://34.93.45.103:8501
+
 ---
 
 ## 🧰 Technologies Used
