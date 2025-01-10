@@ -87,13 +87,46 @@ This will open the Streamlit app in your default web browser.
 3. **Generated Answer:**
    - "Bottleneck issues mentioned include supply chain delays and equipment downtime."
 
-🧪 Positive Test Cases:
-1. **Upload File:**
-   - Example: `Sales_Report.xlsx`
-   **Ask a Question:**
+🧪 Positive Test Cases: <br />
+1. **Upload File:** <br />
+   - Example: `Sales_Report.xlsx` <br />
+   **Ask a Question:** <br />
    - "What was the total revenue for Q4?" <br />
-   **Generated Answer:**
-   - "The total revenue for Q4 was $1,200,000."
+   **Generated Answer:** <br />
+   - "The total revenue for Q4 was $1,200,000." <br />
+   
+2. **Upload File:** <br />
+   - Example: `Employee_Performance.xlsx` <br />
+   **Ask a Question:** <br />
+   - "Which employee had the highest sales in October?" <br />
+   **Generated Answer:** <br />
+   - "John Doe had the highest sales in October with $50,000." <br />
+3. **Upload File:** <br />
+   - Example: `Inventory_Management.xlsx` <br />
+   **Ask a Question:** <br />
+   - 	“Which items are out of stock?” <br />
+   **Generated Answer:** <br />
+   - “Items out of stock are Item A, Item B, and Item D." <br />
+4. **Upload File:** <br />
+   - Example: `Marketing_Campaign.xlsx` <br />
+   **Ask a Question:** <br />
+   - 	“Which campaign had the highest ROI?” <br />
+   **Generated Answer:** <br />
+   - “The campaign with the highest ROI was Campaign Alpha with 200%.” <br />
+5. **Upload File:** <br />
+   - Example: `Production_Analysis.xlsx` <br />
+   **Ask a Question:** <br />
+   - 	“What were the downtime reasons?” <br />
+   **Generated Answer:** <br />
+   - “Downtime reasons include equipment maintenance and power outages.” <br />  <br />
+  
+🧪 Negative Test Cases:  <br /> 
+1. **Upload File:** <br />
+   - Example: `Empty_File.xlsx` <br />
+   **Ask a Question:** <br />
+   - 	“What were the downtime reasons?” <br />
+   **Generated Answer:** <br />
+   - “Downtime reasons include equipment maintenance and power outages.” <br />
 ---
 
 ## 🛠 Troubleshooting
