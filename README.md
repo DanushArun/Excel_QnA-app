@@ -127,6 +127,24 @@ This will open the Streamlit app in your default web browser.
    - 	“What were the downtime reasons?” <br />
    **Generated Answer:** <br />
    - “Downtime reasons include equipment maintenance and power outages.” <br />
+2. **Upload File:** <br />
+   - Example: `Corrupted_File.xlsx` <br />
+   **Ask a Question:** <br />
+   - 	“What are the top-performing products?” <br />
+   **Generated Answer:** <br />
+   - “Error: Unable to process the uploaded file. Please check the file format and content.” <br />
+3. **Upload File:** <br />
+   - Example: ` Production_Analysis.xlsx` <br />
+   **Ask a Question:** <br />
+   - 	“Tell me the color of the sky.” <br />
+   **Generated Answer:** <br />
+   - “Error: Question not relevant to the uploaded data.” <br />
+4. **Upload File:** <br />
+   - Example: ` Inventory_Management.xlsx` <br />
+   **Ask a Question:** <br />
+   - 	“Who is the CEO of the company?” <br />
+   **Generated Answer:** <br />
+   - “Error: No relevant information found in the uploaded data.” <br />
 ---
 
 ## 🛠 Troubleshooting
