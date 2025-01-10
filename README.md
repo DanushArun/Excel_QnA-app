@@ -91,7 +91,7 @@ This will open the Streamlit app in your default web browser.
 1. **Upload File:**
    - Example: `Sales_Report.xlsx`
    **Ask a Question:**
-   - "What was the total revenue for Q4?"
+   - "What was the total revenue for Q4?" <br />
    **Generated Answer:**
    - "The total revenue for Q4 was $1,200,000."
 ---
