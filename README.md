@@ -1,162 +1,58 @@
-# AI-Powered XLSX Q&A application
+# Excel Q&A App
 
-## 📋 Project Overview
-This project is a **Streamlit-based application** that allows users to upload an Excel (`.xlsx`) file and ask questions about the data using **Google's Generative AI API (Gemini)**. The app extracts text from the uploaded file and uses the **Google Generative AI** to generate meaningful responses based on the user's questions.
+A Streamlit application that turns the first worksheet of an uploaded Excel file into text
+and sends that text with a question to a Google Gemini generation model.
 
-Live Link: [http://34.93.45.103:8501](https://excel-qna-app-865212935032.asia-south1.run.app/)
+## Data flow
 
----
-
-## 🧰 Technologies Used
-- **Python**
-- **Streamlit**
-- **Pandas**
-- **Google Generative AI API (Gemini)**
-- **dotenv**
-
----
-
-## 📂 Project Structure
-```
-├── app.py             # Main application code
-├── requirements.txt   # Python dependencies
-├── .env               # Environment variables (API keys)
-├── README.md          # Project documentation (this file)
+```mermaid
+flowchart LR
+    XLSX[Uploaded XLSX] --> Pandas[Read first worksheet]
+    Pandas --> Text[Join nonempty row values]
+    Text --> Prompt[Workbook text and question]
+    Prompt --> Gemini[Google generation API]
+    Gemini --> Answer[Streamlit answer]
 ```
 
----
+The application uses a full-text prompt. It does not implement embeddings, vector retrieval,
+spreadsheet formulas, deterministic numeric checks or source-cell citations.
 
-## ⚙️ Installation & Setup
-### 1️⃣ **Clone the Repository**
+## Local setup
+
 ```bash
-git clone https://github.com/DanushArun/Excel-QnA-webapp.git
-cd Excel-QnA-webapp
-```
-
-### 2️⃣ **Create a Virtual Environment**
-```bash
-python -m venv venv
-```
-
-### 3️⃣ **Activate the Virtual Environment**
-- On **Windows**:
-  ```bash
-  venv\Scripts\activate
-  ```
-- On **Mac/Linux**:
-  ```bash
-  source venv/bin/activate
-  ```
-
-### 4️⃣ **Install Dependencies**
-```bash
-pip install -r requirements.txt
-```
-
-### 5️⃣ **Set Up the `.env` File**
-Create a `.env` file in the root directory and add your **Gemini API key**:
-```
-GEMINI_API_KEY=your_google_api_key_here
-```
-
----
-
-## 🚀 Running the Application
-```bash
+git clone https://github.com/DanushArun/Excel_QnA-app.git
+cd Excel_QnA-app
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install -r requirements.txt
 streamlit run app.py
 ```
-This will open the Streamlit app in your default web browser.
 
----
+Set `GEMINI_API_KEY` in your local environment before launch. Supply your own account key;
+do not reuse or publish credentials stored in a checkout.
+The app names `gemini-1.5-flash` and pins `google-generativeai` 0.3.2. Current model access and
+SDK compatibility were not verified with a live provider account in this update.
 
-## 🛠 How It Works
-1. **Upload an Excel File:**
-   - Users can upload `.xlsx` files containing tabular data.
-2. **Ask a Question:**
-   - Enter a question related to the uploaded data.
-3. **Get an Answer:**
-   - The app uses the Google Generative AI API to provide an answer based on the data.
+## What the UI does
 
----
+1. Accept an `.xlsx` upload.
+2. Read it through pandas and flatten nonempty row values into text.
+3. Accept a question and submit a generation request.
+4. Render the returned answer as Markdown.
 
-## 🧪 Example Usage
-1. **Upload File:**
-   - Example: `Production_Analysis.xlsx`
-2. **Ask a Question:**
-   - "What bottleneck issues are mentioned?"
-3. **Generated Answer:**
-   - "Bottleneck issues mentioned include supply chain delays and equipment downtime."
+Workbook content and the question leave the machine for the configured provider.
+Use synthetic or authorized files when evaluating the app.
 
-🧪 Positive Test Cases: <br />
-1. **Upload File:** <br />
-   - Example: `Sales_Report.xlsx` <br />
-   **Ask a Question:** <br />
-   - "What was the total revenue for Q4?" <br />
-   **Generated Answer:** <br />
-   - "The total revenue for Q4 was $1,200,000." <br />
-   
-2. **Upload File:** <br />
-   - Example: `Employee_Performance.xlsx` <br />
-   **Ask a Question:** <br />
-   - "Which employee had the highest sales in October?" <br />
-   **Generated Answer:** <br />
-   - "John Doe had the highest sales in October with $50,000." <br />
-3. **Upload File:** <br />
-   - Example: `Inventory_Management.xlsx` <br />
-   **Ask a Question:** <br />
-   - 	“Which items are out of stock?” <br />
-   **Generated Answer:** <br />
-   - “Items out of stock are Item A, Item B, and Item D." <br />
-4. **Upload File:** <br />
-   - Example: `Marketing_Campaign.xlsx` <br />
-   **Ask a Question:** <br />
-   - 	“Which campaign had the highest ROI?” <br />
-   **Generated Answer:** <br />
-   - “The campaign with the highest ROI was Campaign Alpha with 200%.” <br />
-5. **Upload File:** <br />
-   - Example: `Production_Analysis.xlsx` <br />
-   **Ask a Question:** <br />
-   - 	“What were the downtime reasons?” <br />
-   **Generated Answer:** <br />
-   - “Downtime reasons include equipment maintenance and power outages.” <br />  <br />
-  
-🧪 Negative Test Cases:  <br /> 
-1. **Upload File:** <br />
-   - Example: `Empty_File.xlsx` <br />
-   **Ask a Question:** <br />
-   - 	“What were the downtime reasons?” <br />
-   **Generated Answer:** <br />
-   - “Downtime reasons include equipment maintenance and power outages.” <br />
-2. **Upload File:** <br />
-   - Example: `Corrupted_File.xlsx` <br />
-   **Ask a Question:** <br />
-   - 	“What are the top-performing products?” <br />
-   **Generated Answer:** <br />
-   - “Error: Unable to process the uploaded file. Please check the file format and content.” <br />
-3. **Upload File:** <br />
-   - Example: ` Production_Analysis.xlsx` <br />
-   **Ask a Question:** <br />
-   - 	“Tell me the color of the sky.” <br />
-   **Generated Answer:** <br />
-   - “Error: Question not relevant to the uploaded data.” <br />
-4. **Upload File:** <br />
-   - Example: ` Inventory_Management.xlsx` <br />
-   **Ask a Question:** <br />
-   - 	“Who is the CEO of the company?” <br />
-   **Generated Answer:** <br />
-   - “Error: No relevant information found in the uploaded data.” <br />
----
+## Evidence and limits
 
-## 🛠 Troubleshooting
-### Common Errors and Fixes:
-- **Error: GEMINI_API_KEY not found**
-  - Ensure the `.env` file is correctly set up with your API key.
-- **Error: 404 Requested entity was not found**
-  - Ensure you're using the correct model (e.g., `models/chat-bison-001`).
-- **Error: 'GenerateContentResponse' object has no attribute 'result'**
-  - Update your code to use `response.responses[0].text`.
+Python syntax and README links were checked. No workbook-to-answer provider evaluation or
+Cloud Run deployment check was performed. There is no automated test suite here.
 
-## 📜 License
-This project is licensed under the MIT License. See the LICENSE file for more details.
+Only the first worksheet is read by default. Flattening loses column names, data types and
+cell coordinates. Large workbooks may exceed the model context limit. Answers, totals and
+relevance refusals are not verified by the application; inspect the workbook before relying
+on a generated result. A Dockerfile is included, but live deployment status is unverified.
 
-## Developed by Danush Arun
+## License
+
+See [LICENSE](LICENSE).
